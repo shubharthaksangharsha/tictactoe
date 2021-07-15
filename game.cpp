@@ -62,10 +62,10 @@ int main(){
   cout<<"\t\t\tWelcome to Tic Tac Toe!!!!!"<<endl;
   cout<<"Choose you want to play as Player1(O) or Player2(X): " ;
   cin>>play;
-  cout<<"Press 1 and Hit enter  to display current game\n";
-  cout<<"Press 2 and input two numbers to check state of that position\n";
-  cout<<"Press 3 and input two numbers to play \n";
-
+  cout<< "Press 1 and Hit enter  to display current game\n";
+  cout<< "Press 2 and input two numbers to check state of that position\n";
+  cout<< "Press 3 and input two numbers to play \n";
+  cout<< "Press 4 to Exit the Game\n";
     
   while(cin>>choice){
 
@@ -81,10 +81,15 @@ int main(){
       cin>> i>> j;
       if(play == 'O'){
 	g1.playO(i , j);
+	break;
       }
       else{
 	g1.playX(i,j);
+	break;
       }
+    case '4' :
+      exit(1);
+      break;
       
     }
   }
