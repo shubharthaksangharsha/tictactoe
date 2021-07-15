@@ -32,10 +32,26 @@ void Game:: display(){
 }
 
 
+//get function
+char Game:: get(int i, int j){
+  if(board[i][j] == 'O'){
+    return 'O';
+  }
+  else if(board[i][j] == 'X'){
+    return 'X';
+  }
+  else
+    return '-';
+}
+
 //Driver Code:-
 int main(){
   Game g1;
+  int i , j ;
+  
 
   g1.display();
+  cin>>i >> j;
+  cout<<g1.get(i , j);
     return 0;
 }
