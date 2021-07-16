@@ -1,6 +1,8 @@
 #include<iostream>
+#include<utility>
 #include<vector>
 using namespace std;
+
 
 class Game{
   vector<vector<char>> board;
@@ -110,6 +112,33 @@ void Game:: playX(int i, int j){
 }
 
 
+
+class Player{
+  char xo;
+public:
+  char init_xo();
+  pair<int, int> play(Game & g1);
+};
+
+//default const for Player class
+char Player:: init_xo(){
+  cout<<"Please Choose Player1(O) or Player2(X): ";
+  cin>>xo;
+  return xo;
+}
+//play function
+pair<int, int>Player:: play(Game & g1){
+    pair<int, int> move;
+    cout<<"Enter the row: ";
+    cin>>move.first;
+    cout<<endl;
+    cout<<"Enter the column: ";
+    cin>>move.second;
+
+    return move;
+    
+  }
+
 //menu function
 void menu(){
   cout<< "Press 1 and Hit enter  to display current game\n";
@@ -125,12 +154,11 @@ int main(){
   char play,choice;
   int i,j;
   Game g1;
+  Player p1,p2;
 
   cout<<"\t\t\tWelcome to Tic Tac Toe!!!!!"<<endl;
   Again:
-  cout<<"Choose you want to play as Player1(O) or Player2(X): " ;
-  cin>>play;
-  if(play == 'O' || play == 'X'){
+  if(p1.init_xo() == 'O' || p1.init_xo() == 'X'){
  
   menu();
   
