@@ -11,42 +11,62 @@ public:
   void display();
   void playO(int i, int j);
   void playX(int i , int j);
+  void gameisfull();
 };
+
+//gameisfull() function
+void Game :: gameisfull(){
+  if(board[0][0] != '-' &&  board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-' &&board[1][1] != '-' &&board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-' && board[2][2] != '-' ){
+    cout<<"Game is completed. It's a draw!\n";
+    exit(1);;
+  }
+  else{
+    cout<<"Still playing!\n";
+  }
+}
+
 
 //did_win function
 char Game:: did_win(char play){
+  char winner;
   if(play == 'O' ){
+
     if(board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O'  || board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O' ||
        board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O'){
-      return 'O';
+      winner = 'O';
     }
     else if(board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O'){
-      return 'O';
+      winner = 'O';
     }
     else if(board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O' || board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O'){
-      return 'O';
+      winner = 'O';
     }
     else if(board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O' || board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O' ){
-      return 'O';
+      winner = 'O';
     }      
+
 
   }
   else if(play == 'X'){
     if(board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X'  || board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X' ||
        board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X'){
-      return 'X';
+      winner = 'X';
     }
     else if(board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X'){
-      return 'X';
+      winner = 'X';
     }
     else if(board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X' || board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X'){
-      return 'X';
+      winner = 'X';
     }
     else if(board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X' || board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X' ){
-      return 'X';
+      winner = 'X';
     }      
 
   }
+  else {
+    gameisfull();
+  }
+  return winner;
 }
 //default constructor to initialize the board
 Game::Game(){
@@ -105,8 +125,9 @@ int main(){
   char play,choice;
   int i,j;
   Game g1;
- Again:
+
   cout<<"\t\t\tWelcome to Tic Tac Toe!!!!!"<<endl;
+  Again:
   cout<<"Choose you want to play as Player1(O) or Player2(X): " ;
   cin>>play;
   if(play == 'O' || play == 'X'){
@@ -145,6 +166,9 @@ int main(){
       else if(g1.did_win(play) == 'O'){
 	cout<<"Game won by : "<< g1.did_win(play)<<endl;
 	exit(1);
+      }
+      else if(g1.did_win(play) != 'O' ||  g1.did_win(play) != 'X') {
+	g1.gameisfull();
       }
       else{
 	cout<<"Still Playing"<<endl;
