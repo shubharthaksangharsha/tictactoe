@@ -89,6 +89,17 @@ void Game:: playX(int i, int j){
   board[i][j] = 'X';
 }
 
+
+//menu function
+void menu(){
+  cout<< "Press 1 and Hit enter  to display current game\n";
+  cout<< "Press 2 and input two numbers to check state of that position\n";
+  cout<< "Press 3 and input two numbers to play \n";
+  cout<< "Press 4 and Hit enter to check who win the game\n";
+  cout<< "Press 5 to Exit the Game\n";
+  
+}
+
 //Driver Code:-
 int main(){
   char play,choice;
@@ -99,31 +110,32 @@ int main(){
   cout<<"Choose you want to play as Player1(O) or Player2(X): " ;
   cin>>play;
   if(play == 'O' || play == 'X'){
-  cout<< "Press 1 and Hit enter  to display current game\n";
-  cout<< "Press 2 and input two numbers to check state of that position\n";
-  cout<< "Press 3 and input two numbers to play \n";
-  cout<< "Press 4 and Hit enter to check who win the game\n";
-  cout<< "Press 5 to Exit the Game\n";
-    
+ 
+  menu();
+  
   while(cin>>choice){
 
     switch(choice){
     case '1' : 
       g1.display();
+      menu();
       break;
     case '2' :
       cin>>i>>j;
       cout<<"Position of [" << i<<" ][" << j <<"] = "<< g1.get(i,j)<<endl;
+      menu();
       break;
     case '3' :
       cin>> i>> j;
       if(play == 'O'){
 	g1.playO(i , j);
 	break;
+	menu();
       }
       else{
 	g1.playX(i,j);
 	break;
+	menu();
       }
     case '4':
       if(g1.did_win(play) == 'X'){
@@ -137,6 +149,7 @@ int main(){
       else{
 	cout<<"Still Playing"<<endl;
       }
+      menu();
       break;
       
     case '5' :
