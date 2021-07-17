@@ -12,32 +12,23 @@ public:
   void display();
   void playO(pair<int, int> move);
   void playX(pair<int, int> move);
-  //  bool gameisfull();
+  void who_win();
 };
 
-
-//gameisfull()
-// bool Game:: gameisfull(){
-
-//   if(board[0][0] != '-' && board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-' && board[1][1] != '-' && board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-' && board[2][2] != '-'  ){
-//     return true;
-//   }
-//   else{
-//     return false;
-//   }
-// }
+//who_win()
+void Game:: who_win(){
+  if(did_win() == 'X'){
+    cout<<"Hurray!!! Player1(X) won the game!!!"<<endl;
+  }
+  else if(did_win() == 'O'){
+    cout<<"Hurray!!! Player2(O) won the game!!!"<<endl;
+  }
+  else{
+    cout<<"Game is finished, Oops!! It's a draw!!!"<<endl;
+  }
+}
       
-
-/* 
-It will return whether :-
-A) 'X' : when Player X wins. 
-B) 'O' : when Player O wins.
-C) 'D' : when board is full and it's draw.
-
-D) '\0' : when game is still running.
-*/
-
-
+      
 //did_win function
 char Game:: did_win(){
   char winner;
@@ -76,7 +67,7 @@ char Game:: did_win(){
   else {
     winner = '-';
   }
-  cout<<"Value of winner : " <<winner<<endl;
+
   return winner;
 }
 
@@ -201,20 +192,29 @@ int main(){
   // cout<<"Checking Did Win!\n";
   // cout<<"Did Win : "<<game.did_win();
   bool p1next= true;
-  while(game.did_win() != 'X' ||game.did_win() != 'D' || game.did_win() != 'O'  ) {
+
+  while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
+
     if(p1next){
+      cout<<"Player1(X) Turn"<<endl;
       auto p =p1.play(game);
       game.playX(p);
       game.display();
       p1next= false;
+
     }
     else{
+      cout<<"Player2(O) Turn"<<endl;
       auto p = p2.play(game);
       game.playO(p);
       game.display();
       p1next= true;
     }
+  
   }
-  cout<<"stop";
+
+  game.who_win();
+  
+
   return 0;
 }
