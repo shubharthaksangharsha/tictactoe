@@ -3,7 +3,6 @@
 #include<vector>
 using namespace std;
 
-
 class Game{
   vector<vector<char>> board;
 public:
@@ -11,21 +10,23 @@ public:
   char did_win();
   char get(int i , int j);
   void display();
-  void playO(int i, int j);
-  void playX(int i , int j);
-  void gameisfull();
+  void playO(pair<int, int> move);
+  void playX(pair<int, int> move);
+  //  bool gameisfull();
 };
 
-//gameisfull() function
-void Game :: gameisfull(){
-  if(board[0][0] != '-' &&  board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-' &&board[1][1] != '-' &&board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-' && board[2][2] != '-' ){
-    cout<<"Game is completed. It's a draw!\n";
-    exit(1);
-  }
-  else{
-    cout<<"Still playing!\n";
-  }
-}
+
+//gameisfull()
+// bool Game:: gameisfull(){
+
+//   if(board[0][0] != '-' && board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-' && board[1][1] != '-' && board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-' && board[2][2] != '-'  ){
+//     return true;
+//   }
+//   else{
+//     return false;
+//   }
+// }
+      
 
 /* 
 It will return whether :-
@@ -73,9 +74,9 @@ char Game:: did_win(){
   }
 
   else {
-    winner = '\0';
+    winner = '-';
   }
-
+  cout<<"Value of winner : " <<winner<<endl;
   return winner;
 }
 
@@ -111,37 +112,19 @@ char Game:: get(int i, int j){
 }
 
 //playO function
-void Game:: playO(int i, int j){
-  board[i][j] = 'O';
+void Game:: playO(pair<int,int>move){
+
+  board[move.first][move.second] = 'O';
 }
 
 //playX function
-void Game:: playX(int i, int j){
-  board[i][j] = 'X';
+void Game:: playX(pair<int,int>move){
+
+  board[move.first][move.second] = 'X';
 }
 
 
 
-class Player{
-  char xo;
-public:
-
-  pair<int, int> play(Game & g1);
-};
-
-
-//play function
-pair<int, int>Player:: play(Game & g1){
-    pair<int, int> move;
-    cout<<"Enter the row: ";
-    cin>>move.first;
-    cout<<endl;
-    cout<<"Enter the column: ";
-    cin>>move.second;
-
-    return move;
-    
-  }
 
 //menu function
 void menu(){
@@ -153,45 +136,85 @@ void menu(){
   
 }
 
+class Player{
+  char xo;
+
+public:
+  Player(char choose);
+  pair<int, int> play(Game &game);
+};
+
+Player::Player(char choose){
+  xo = choose;
+}
+ 
+pair<int, int>Player:: play(Game &game){
+  int pos1, pos2;
+  cout<<"Where to play: "<<endl;
+  cin>>pos1>>pos2;
+  auto pos = make_pair(pos1, pos2);
+  return pos;
+}
+
+
+
 //Driver Code:-
 int main(){
   Game game;
+  Player p1('X'), p2('O');
   cout<<"Game is created!!!"<<endl;
   game.display();
-  cout<<"Play X at 0,0:  "<<endl;
-  game.playX(0,0);
-  game.display();
-  cout<<"Play O at 1,2: \n";
-  game.playO(1,2);
-  game.display();
-  cout<<"Play X at 2,0: \n";
-  game.playX(2,0);
-  game.display();
-  cout<<"Play O at 1,0: \n";
-  game.playO(1,0);
-  game.display();
-  cout<<"Play X at 1,1: \n";
-  game.playX(1,1);
-  game.display();
-  cout<<"Play O at 0,2: \n";
-  game.playO(0,2);
-  game.display();
-  cout<<"Play X at 0,1: \n";
-  game.playX(0,1);
-  game.display();
-  cout<<"Play O at 2,1: \n";
-  game.playO(2,1);
-  game.display();
-  cout<<"Play X at 1,2: \n";
-  game.playX(1,2);
-  game.display();
-  cout<<"Play O at 2,2: \n";
-  game.playO(2,2);
-  game.display();
-
-  cout<<"Checking Did Win!\n";
-  cout<<"Did Win : "<<game.did_win();
+  // cout<<"Play X at 0,0:  "<<endl;
+  // game.playX(move);
+  // game.display();
+  // cout<<"Play O at 1,2: \n";
+  // game.playO(1,2);
+  // game.display();
+  // cout<<"Play X at 2,0: \n";
+  // game.playX(2,0);
+  // game.display();
+  // cout<<"Play O at 1,0: \n";
+  // game.playO(1,0);
+  // game.display();
+  // cout<<"Play X at 1,1: \n";
+  // game.playX(1,1);
+  // game.display();
+  // cout<<"Play O at 0,2: \n";
+  // game.playO(0,2);
+  // game.display();
+  // cout<<"Play X at 0,1: \n";
+  // game.playX(0,1);
+  // game.display();
+  // cout<<"Play O at 2,1: \n";
+  // game.playO(2,1);
+  // game.display();
+  // cout<<"Play X at 1,2: \n";
+  // game.playX(1,2);
+  // game.display();
+  // cout<<"Play O at 2,2: \n";
+  // game.playO(2,2);
+  // game.display();
   
+  // game.playX(p1.play(game));
+  // game.display();
   
+  // cout<<"Checking Did Win!\n";
+  // cout<<"Did Win : "<<game.did_win();
+  bool p1next= true;
+  while(game.did_win() != 'X' ||game.did_win() != 'D' || game.did_win() != 'O'  ) {
+    if(p1next){
+      auto p =p1.play(game);
+      game.playX(p);
+      game.display();
+      p1next= false;
+    }
+    else{
+      auto p = p2.play(game);
+      game.playO(p);
+      game.display();
+      p1next= true;
+    }
+  }
+  cout<<"stop";
   return 0;
 }
