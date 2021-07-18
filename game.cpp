@@ -165,7 +165,7 @@ int main(){
   cout<<"Game is created!!!"<<endl;
   game.display();
   bool p1next= true;
-  //  while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
+  //while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
   while(game.did_win() == '-'){
     if(p1next){
       cout<<"Player1(X) Turn"<<endl;
@@ -179,7 +179,8 @@ int main(){
       cout<<"Player2(O) Turn"<<endl;
       auto p = p2.play(game);
       game.playO(p);
-      game.display();
+p      game.display();
+
       p1next= true;
     }
   
