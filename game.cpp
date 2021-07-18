@@ -135,17 +135,14 @@ class Player{
 
 public:
   Player(char choose);
-  pair<int, int> play(const Game &game);
+  pair<int, int> play(const Game &game, int pos1, int pos2);
 };
 
 Player::Player(char choose){
   xo = choose;
 }
  
-pair<int, int>Player:: play(const Game &game){
-  int pos1, pos2;
-  cout<<"Enter two numbers to let us know where to play: "<<endl;
-  cin>>pos1>>pos2;
+pair<int, int>Player:: play(const Game &game, int pos1, int pos2){
   auto pos = make_pair(pos1, pos2);
   return pos;
 }
@@ -169,17 +166,23 @@ int main(){
   while(game.did_win() == '-'){
     if(p1next){
       cout<<"Player1(X) Turn"<<endl;
-      auto p =p1.play(game);
-      game.playX(p);
-      game.display();
-      p1next= false;
+        int pos1, pos2;
+	cout<<"Enter two numbers to let us know where to play: "<<endl;
+	cin>>pos1>>pos2;
+	auto p =p1.play(game, pos1, pos2);
+	game.playX(p);
+	game.display();
+	p1next= false;
 
     }
     else{
+      int pos1, pos2;
+      cout<<"Enter two numbers to let us know where to play: "<<endl;
+      cin>>pos1>>pos2;
       cout<<"Player2(O) Turn"<<endl;
-      auto p = p2.play(game);
+      auto p = p2.play(game, pos1, pos2);
       game.playO(p);
-p      game.display();
+      game.display();
 
       p1next= true;
     }
