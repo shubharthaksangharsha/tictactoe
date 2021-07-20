@@ -149,15 +149,24 @@ pair<int, int>Player:: play(const Game &game, int pos1, int pos2){
 }
 
 
-class AIPlayer :: public Player{
+class AIPlayer : public Player{
 public:
   pair<int, int> play(const Game &game, int pos1, int pos2);
-}
+};
 
+pair<int, int> AIPlayer:: play(const Game &game, int pos1, int pos2){
+  auto p = make_pair(0,0);
+  return p;
+}
+  
+
+  
 //Driver Code:-
 int main(){
   Game game;
   Player p1('X'), p2('O');
+
+
   char openmenu;
   cout<<"**************Welcome To Tic Tac Toe!*************"<<endl;
   menu();
