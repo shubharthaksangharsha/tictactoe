@@ -155,7 +155,7 @@ public:
 };
 
 pair<int, int> AIPlayer:: play(const Game &game, int pos1, int pos2){
-  auto p = make_pair(0,0);
+  auto p = make_pair(pos1, pos2);
   return p;
 }
   
@@ -165,7 +165,7 @@ pair<int, int> AIPlayer:: play(const Game &game, int pos1, int pos2){
 int main(){
   Game game;
   Player p1('X'), p2('O');
-
+  
 
   char openmenu;
   cout<<"**************Welcome To Tic Tac Toe!*************"<<endl;
