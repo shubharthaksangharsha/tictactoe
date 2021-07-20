@@ -19,16 +19,17 @@ string who_win(Game &game){
   string end = "Game is finished";
   if(game.did_win() == 'X'){
     cout<<"Hurray!!! Player1(X) won the game!!!"<<endl;
-    return end;
+
   }
   else if(game.did_win() == 'O'){
     cout<<"Hurray!!! Player2(O) won the game!!!"<<endl;
-    return end;
+
   }
   else{
     cout<<"Game is finished, Oops!! It's a draw!!!"<<endl;
-    return end;
+
   }
+  return end;
 }
      
       
@@ -148,7 +149,10 @@ pair<int, int>Player:: play(const Game &game, int pos1, int pos2){
 }
 
 
-
+class AIPlayer :: public Player{
+public:
+  pair<int, int> play(const Game &game, int pos1, int pos2);
+}
 
 //Driver Code:-
 int main(){
@@ -171,7 +175,9 @@ int main(){
 	cin>>pos1>>pos2;
 	auto p =p1.play(game, pos1, pos2);
 	game.playX(p);
+	cout<<"\t  -------------------------------------------"<<endl;
 	game.display();
+	cout<<"\t  -------------------------------------------"<<endl;
 	p1next= false;
 
     }
@@ -182,8 +188,9 @@ int main(){
       cout<<"Player2(O) Turn"<<endl;
       auto p = p2.play(game, pos1, pos2);
       game.playO(p);
+      cout<<"\t  -------------------------------------------"<<endl;
       game.display();
-
+      cout<<"\t  -------------------------------------------"<<endl;
       p1next= true;
     }
   
