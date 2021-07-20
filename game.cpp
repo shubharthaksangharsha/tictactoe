@@ -136,27 +136,33 @@ class Player{
 
 public:
   Player(char choose);
-  pair<int, int> play(const Game &game, int pos1, int pos2);
+  pair<int, int> play(const Game &game);
 };
 
 Player::Player(char choose){
   xo = choose;
 }
  
-pair<int, int>Player:: play(const Game &game, int pos1, int pos2){
-  auto pos = make_pair(pos1, pos2);
-  return pos;
+pair<int, int>Player:: play(const Game &game){
+  int pos1,  pos2;
+  cout<<"Enter two numbers to let us know where to play: "<<endl;
+  cin>>pos1>>pos2;
+  return make_pair(pos1, pos2);
 }
 
 
 class AIPlayer : public Player{
 public:
-  pair<int, int> play(const Game &game, int pos1, int pos2);
+  AIPlayer(char choose);
+  pair<int, int> play(const Game &game);
 };
 
-pair<int, int> AIPlayer:: play(const Game &game, int pos1, int pos2){
-  auto p = make_pair(pos1, pos2);
-  return p;
+AIPlayer:: AIPlayer(char choose): Player(choose){
+    choose = choose;
+}
+
+pair<int, int> AIPlayer:: play(const Game &game){
+  return make_pair(0,0);
 }
   
 
@@ -164,8 +170,8 @@ pair<int, int> AIPlayer:: play(const Game &game, int pos1, int pos2){
 //Driver Code:-
 int main(){
   Game game;
-  Player p1('X'), p2('O');
-  
+  Player p1('X'); 
+  AIPlayer p2('O');
 
   char openmenu;
   cout<<"**************Welcome To Tic Tac Toe!*************"<<endl;
@@ -180,9 +186,7 @@ int main(){
     if(p1next){
       cout<<"Player1(X) Turn"<<endl;
         int pos1, pos2;
-	cout<<"Enter two numbers to let us know where to play: "<<endl;
-	cin>>pos1>>pos2;
-	auto p =p1.play(game, pos1, pos2);
+	auto p =p1.play(game);
 	game.playX(p);
 	cout<<"\t  -------------------------------------------"<<endl;
 	game.display();
@@ -192,10 +196,8 @@ int main(){
     }
     else{
       int pos1, pos2;
-      cout<<"Enter two numbers to let us know where to play: "<<endl;
-      cin>>pos1>>pos2;
       cout<<"Player2(O) Turn"<<endl;
-      auto p = p2.play(game, pos1, pos2);
+      auto p = p2.play(game);
       game.playO(p);
       cout<<"\t  -------------------------------------------"<<endl;
       game.display();
