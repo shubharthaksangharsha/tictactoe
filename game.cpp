@@ -78,7 +78,22 @@ char Game:: did_win(){
 //default constructor to initialize the board
 Game::Game(){
     for(int i = 0; i < 3 ; i ++){
-      vector<char> v1(3,'-');    
+      vector<char> v1;
+      if(i == 0){
+      for(char j = '1' ; j < '4' ; j++){
+	v1.push_back(j);
+      }
+      }
+      else if( i == 1){
+	for(char j = '4' ; j < '7' ; j++){
+	  v1.push_back(j);
+	}
+      }
+      else{
+	for(char j = '7' ; j <= '9' ; j++){
+	  v1.push_back(j);
+      }
+      }
       board.push_back(v1);
     }
   }
@@ -171,7 +186,7 @@ pair<int, int> AIPlayer:: play(Game &game){
       }
     }
   }
-
+  return make_pair(0,0);
 }
   
 
@@ -179,45 +194,82 @@ pair<int, int> AIPlayer:: play(Game &game){
 //Driver Code:-
 int main(){
   Game game;
-  Player p1('X'); 
-  AIPlayer p2('O');
-
+  Player p1('X'), p2('O'); 
+  AIPlayer ai('O');
   char openmenu;
   cout<<"**************Welcome To Tic Tac Toe!*************"<<endl;
   menu();
   cin>>openmenu;
   if(openmenu == '0'){
-  cout<<"Game is created!!!"<<endl;
-  game.display();
-  bool p1next= true;
-  //while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
-  while(game.did_win() == '-'){
-    if(p1next){
-      cout<<"Player1(X) Turn"<<endl;
-        int pos1, pos2;
-	auto p =p1.play(game);
-	game.playX(p);
-	cout<<"\t  -------------------------------------------"<<endl;
-	game.display();
-	cout<<"\t  -------------------------------------------"<<endl;
-	p1next= false;
+    char choice;
+    cout<<"To play with HUMAN, HIT 'H'"<<endl;
+    cout<<"To play with AI, HIT 'A'"<<endl;
+    cin>>choice;
+    if (choice=='H' || choice == 'h'){
+      cout<<"\nGame is created!!!\n"<<endl;
+      cout<<"\nPlayer 1 playing as: X\nPlayer 2 playing as: O\n"<<endl;
+      game.display();
+      bool p1next= true;
+      //while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
+      while(game.did_win() == '-'){
+	if(p1next){
+	  cout<<"Player1(X) Turn"<<endl;
+	  auto p =p1.play(game);
+	  game.playX(p);
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  game.display();
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  p1next= false;
 
+	}
+	else{
+	  cout<<"Player2(O) Turn"<<endl;
+	  auto p = p2.play(game);
+	  game.playO(p);
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  game.display();
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  p1next= true;
+	}
+  
+      }
+  
+    cout<<who_win(game)<<endl;
+    }
+    else if(choice == 'A' || choice == 'a'){
+      cout<<"Game is created!!!"<<endl;
+      cout<<"Player 1 playing as: X\nAI playing as: O"<<endl;
+      game.display();
+      bool p1next= true;
+      //while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
+      while(game.did_win() == '-'){
+	if(p1next){
+	  cout<<"Player1(X) Turn"<<endl;
+	  auto p =p1.play(game);
+	  game.playX(p);
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  game.display();
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  p1next= false;
+
+	}
+	else{
+	  cout<<"Player2(O) Turn"<<endl;
+	  auto p = ai.play(game);
+	  game.playO(p);
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  game.display();
+	  cout<<"\t  -------------------------------------------"<<endl;
+	  p1next= true;
+	}
+  
+      }
+  
+    cout<<who_win(game)<<endl;
     }
     else{
-      int pos1, pos2;
-      cout<<"Player2(O) Turn"<<endl;
-      auto p = p2.play(game);
-      game.playO(p);
-      cout<<"\t  -------------------------------------------"<<endl;
-      game.display();
-      cout<<"\t  -------------------------------------------"<<endl;
-      p1next= true;
+      cerr<<"Wrong input"<<endl;
     }
-  
+    return 0;
   }
-  
-  cout<<who_win(game)<<endl;
-  }
-
-  return 0;
 }
