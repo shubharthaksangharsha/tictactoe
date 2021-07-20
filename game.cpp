@@ -136,14 +136,14 @@ class Player{
 
 public:
   Player(char choose);
-  pair<int, int> play(const Game &game);
+  pair<int, int> play(Game &game);
 };
 
 Player::Player(char choose){
   xo = choose;
 }
  
-pair<int, int>Player:: play(const Game &game){
+pair<int, int>Player:: play(Game &game){
   int pos1,  pos2;
   cout<<"Enter two numbers to let us know where to play: "<<endl;
   cin>>pos1>>pos2;
@@ -154,15 +154,25 @@ pair<int, int>Player:: play(const Game &game){
 class AIPlayer : public Player{
 public:
   AIPlayer(char choose);
-  pair<int, int> play(const Game &game);
+  pair<int, int> play(Game &game);
 };
 
 AIPlayer:: AIPlayer(char choose): Player(choose){
 
 }
 
-pair<int, int> AIPlayer:: play(const Game &game){
-  return make_pair(0,0);
+pair<int, int> AIPlayer:: play(Game &game){
+  pair<int ,int>p;
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j< 3; j++){
+      if(game.get(i , j) == '-') {
+	   p = make_pair(i,j);
+	   break;
+      }
+    }
+  }
+  
+  return p;
 }
   
 
