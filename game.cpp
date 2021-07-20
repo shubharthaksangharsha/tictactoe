@@ -162,17 +162,16 @@ AIPlayer:: AIPlayer(char choose): Player(choose){
 }
 
 pair<int, int> AIPlayer:: play(Game &game){
-  pair<int ,int>p;
   for(int i = 0; i < 3; i++){
     for(int j = 0; j< 3; j++){
       if(game.get(i , j) == '-') {
-	   p = make_pair(i,j);
-	   break;
+	   return make_pair(i,j);
+
+
       }
     }
   }
-  
-  return p;
+
 }
   
 
