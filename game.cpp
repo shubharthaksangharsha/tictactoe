@@ -158,7 +158,7 @@ public:
 };
 
 AIPlayer:: AIPlayer(char choose): Player(choose){
-    choose = choose;
+
 }
 
 pair<int, int> AIPlayer:: play(const Game &game){
