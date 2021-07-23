@@ -197,26 +197,26 @@ int main(){
     cin>>choice;
     if (choice=='H' || choice == 'h'){
       cout<<"\nGame is created!!!\n"<<endl;
-      cout<<"\nPlayer 1 playing as: X\nPlayer 2 playing as: O\n"<<endl;
+      cout<<"\nPlayer 1 playing as: x\nPlayer 2 playing as: o\n"<<endl;
       game.display();
       bool p1next= true;
       //while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
       while(game.did_win() == '-'){
 	if(p1next){
-	  cout<<"\n------------------------------------\n";
-	  cout<<"Player1(X) Turn"<<endl;
+	  cout<<"Player 1's (x) turn:"<<endl;
 	  auto p =p1.play(game);
 	  game.playX(p);
 	  game.display();
-	  cout<<"\n------------------------------------\n";
+	  cout<<"\n════════════════════════════════════════════════\n";
 	  p1next= false;
 
 	}
 	else{
-	  cout<<"Player2(O) Turn"<<endl;
+	  cout<<"Player 2's (o) turn:"<<endl;
 	  auto p = p2.play(game);
 	  game.playO(p);
 	  game.display();
+	  cout<<"\n════════════════════════════════════════════════\n";
 	  p1next= true;
 	}
   
@@ -230,24 +230,26 @@ int main(){
       cin>>aichoice;
       if(aichoice == 'A' || aichoice == 'a'){
 	cout<<"Game is created!!!"<<endl;
-	cout<<"AI is playing as: Player1(X)\nHuman is playing as: Player2(O)"<<endl;
+	cout<<"AI is playing as: Player1(x)\nHuman is playing as: Player2(o)"<<endl;
 	game.display();
 	bool p1next= true;
 	//while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
 	while(game.did_win() == '-'){
 	  if(p1next){
-	    cout<<"Player1(X) Turn"<<endl;
+	    cout<<"Player1(x) Turn"<<endl;
 	    auto p =ai1.play(game);
 	    game.playX(p);
 	    game.display();
+	    cout<<"\n════════════════════════════════════════════════\n";
 	    p1next= false;
 	    
 	  }
 	  else{
-	    cout<<"Player2(O) Turn"<<endl;
+	    cout<<"Player2(o) Turn"<<endl;
 	    auto p = p2.play(game);
 	    game.playO(p);
 	    game.display();
+	    cout<<"\n════════════════════════════════════════════════\n";
 	    p1next= true;
 	  }
   
@@ -258,7 +260,7 @@ int main(){
       
       else if(aichoice == 'H' || aichoice == 'h'){
 	cout<<"Game is created!!!"<<endl;
-	cout<<"Human is playing as: Player1(X)\nAI is playing as: Player2(O)"<<endl;
+	cout<<"Human is playing as: Player1(x)\nAI is playing as: Player2(o)"<<endl;
 	game.display();
 	bool p1next= true;
 	//while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
@@ -268,6 +270,7 @@ int main(){
 	    auto p =p1.play(game);
 	    game.playX(p);
 	    game.display();
+	    cout<<"\n════════════════════════════════════════════════\n";
 	    p1next= false;
 	    
 	  }
@@ -276,6 +279,7 @@ int main(){
 	    auto p = ai2.play(game);
 	    game.playO(p);
 	    game.display();
+	    cout<<"\n════════════════════════════════════════════════\n";
 	    p1next= true;
 	  }
   
