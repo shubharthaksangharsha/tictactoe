@@ -17,12 +17,12 @@ public:
 //who_win()
 string who_win(Game &game){
   string end = "Game is finished";
-  if(game.did_win() == 'X'){
-    cout<<"Hurray!!! Player1(X) won the game!!!"<<endl;
+  if(game.did_win() == 'x'){
+    cout<<"Hurray!!! Player1(x) won the game!!!"<<endl;
 
   }
-  else if(game.did_win() == 'O'){
-    cout<<"Hurray!!! Player2(O) won the game!!!"<<endl;
+  else if(game.did_win() == 'o'){
+    cout<<"Hurray!!! Player2(o) won the game!!!"<<endl;
 
   }
   else{
@@ -36,32 +36,32 @@ string who_win(Game &game){
 //did_win function
 char Game:: did_win(){
   char winner;
-  if(board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O'  || board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O' ||
-     board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O'){
-    winner = 'O';
+  if(board[0][0] == 'o' && board[0][1] == 'o' && board[0][2] == 'o'  || board[0][0] == 'o' && board[1][0] == 'o' && board[2][0] == 'o' ||
+     board[0][0] == 'o' && board[1][1] == 'o' && board[2][2] == 'o'){
+    winner = 'o';
   }
-  else if(board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O'){
-    winner = 'O';
+  else if(board[0][1] == 'o' && board[1][1] == 'o' && board[2][1] == 'o'){
+    winner = 'o';
   }
-  else if(board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O' || board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O'){
-    winner = 'O';
+  else if(board[0][2] == 'o' && board[1][2] == 'o' && board[2][2] == 'o' || board[0][2] == 'o' && board[1][1] == 'o' && board[2][0] == 'o'){
+    winner = 'o';
   }
-  else if(board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O' || board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O' ){
-    winner = 'O';
+  else if(board[1][0] == 'o' && board[1][1] == 'o' && board[1][2] == 'o' || board[2][0] == 'o' && board[2][1] == 'o' && board[2][2] == 'o' ){
+    winner = 'o';
   }      
   
- else if(board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X'  || board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X' ||
-     board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X'){
-    winner = 'X';
+ else if(board[0][0] == 'x' && board[0][1] == 'x' && board[0][2] == 'x'  || board[0][0] == 'x' && board[1][0] == 'x' && board[2][0] == 'x' ||
+     board[0][0] == 'x' && board[1][1] == 'x' && board[2][2] == 'x'){
+    winner = 'x';
   }
-  else if(board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X'){
-    winner = 'X';
+  else if(board[0][1] == 'x' && board[1][1] == 'x' && board[2][1] == 'x'){
+    winner = 'x';
   }
-  else if(board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X' || board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X'){
-    winner = 'X';
+  else if(board[0][2] == 'x' && board[1][2] == 'x' && board[2][2] == 'x' || board[0][2] == 'x' && board[1][1] == 'x' && board[2][0] == 'x'){
+    winner = 'x';
   }
-  else if(board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X' || board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X' ){
-    winner = 'X';
+  else if(board[1][0] == 'x' && board[1][1] == 'x' && board[1][2] == 'x' || board[2][0] == 'x' && board[2][1] == 'x' && board[2][2] == 'x' ){
+    winner = 'x';
   }      
 
   else if(board[0][0] != '-' &&  board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-' &&board[1][1] != '-' &&board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-' && board[2][2] != '-' ){
@@ -86,34 +86,26 @@ Game::Game(){
 //Display function :-
 
 void Game:: display(){
-  /*┌───┬───┬───┐
-    │ 0 │ 0 │ x │
-    ├───┼───┼───┤
-    │ 0 │ 0 │ x │
-    ├───┼───┼───┤
-    │ 0 │ 0 │ x │
-    └───┴───┴───┘*/
-  printf("\t0\t1\t 2\n");
-  printf("\t|\t|\t |\n");
-  printf("\tV\tV\t v\n");
-  printf("    ________________________\n   |        |        |      |\n");
-  printf("0->|    %c   |   %c    |   %c  |\n",board[0][0], board[0][1], board[0][2]);
-  printf("   |________|________|______|\n");
-  printf("   |        |        |      |\n");
-
-  printf("1->|    %c   |   %c    |   %c  |\n",board[1][0], board[1][1], board[1][2]);
-  printf("   |________|________|______|\n");  
-  printf("   |        |        |      |\n");
-  printf("2->|    %c   |   %c    |   %c  |\n",board[2][0], board[2][1], board[2][2]);
-  printf("   |________|________|______|\n");  
+  string board_str = ""
+    	"      0   1   2     \n"
+	"      |   |   |     \n"
+	"      V   V   V     \n"
+	"    ┌───┬───┬───┐   \n"
+	" 0->│ %c │ %c │ %c │\n"
+	"    ├───┼───┼───┤   \n"
+	" 1->│ %c │ %c │ %c │\n"
+	"    ├───┼───┼───┤   \n"
+	" 2->│ %c │ %c │ %c │\n"
+	"    └───┴───┴───┘    \n";
+printf(board_str.c_str(), board[0][0],board[0][1],board[0][2],board[1][0],board[1][1],board[1][2],board[2][0],board[2][1],board[2][2]);
 }
 //get function
 char Game:: get(int i, int j){
-  if(board[i][j] == 'O'){
-    return 'O';
+  if(board[i][j] == 'o'){
+    return 'o';
   }
-  else if(board[i][j] == 'X'){
-    return 'X';
+  else if(board[i][j] == 'x'){
+    return 'x';
   }
   else
     return '-';
@@ -122,13 +114,13 @@ char Game:: get(int i, int j){
 //playO function
 void Game:: playO(pair<int,int>move){
 
-  board[move.first][move.second] = 'O';
+  board[move.first][move.second] = 'o';
 }
 
 //playX function
 void Game:: playX(pair<int,int>move){
 
-  board[move.first][move.second] = 'X';
+  board[move.first][move.second] = 'x';
 }
 
 
@@ -192,8 +184,8 @@ pair<int, int> AIPlayer:: play(Game &game){
 //Driver Code:-
 int main(){
   Game game;
-  Player p1('X'), p2('O'); 
-  AIPlayer ai1('O'), ai2('X');
+  Player p1('x'), p2('o'); 
+  AIPlayer ai1('o'), ai2('x');
   char openmenu;
   cout<<"**************Welcome To Tic Tac Toe!*************"<<endl;
   menu();
@@ -214,9 +206,9 @@ int main(){
 	  cout<<"Player1(X) Turn"<<endl;
 	  auto p =p1.play(game);
 	  game.playX(p);
-	  cout<<"\t  -------------------------------------------"<<endl;
+
 	  game.display();
-	  cout<<"\t  -------------------------------------------"<<endl;
+
 	  p1next= false;
 
 	}
@@ -224,9 +216,7 @@ int main(){
 	  cout<<"Player2(O) Turn"<<endl;
 	  auto p = p2.play(game);
 	  game.playO(p);
-	  cout<<"\t  -------------------------------------------"<<endl;
 	  game.display();
-	  cout<<"\t  -------------------------------------------"<<endl;
 	  p1next= true;
 	}
   
@@ -249,9 +239,7 @@ int main(){
 	    cout<<"Player1(X) Turn"<<endl;
 	    auto p =ai1.play(game);
 	    game.playX(p);
-	    cout<<"-----------------------------------------"<<endl;
 	    game.display();
-	    cout<<"-----------------------------------------"<<endl;
 	    p1next= false;
 	    
 	  }
@@ -259,9 +247,7 @@ int main(){
 	    cout<<"Player2(O) Turn"<<endl;
 	    auto p = p2.play(game);
 	    game.playO(p);
-	    cout<<"\t  -------------------------------------------"<<endl;
 	    game.display();
-	    cout<<"\t  -------------------------------------------"<<endl;
 	    p1next= true;
 	  }
   
@@ -281,9 +267,7 @@ int main(){
 	    cout<<"Player1(X) Turn"<<endl;
 	    auto p =p1.play(game);
 	    game.playX(p);
-	    cout<<"\t  -------------------------------------------"<<endl;
 	    game.display();
-	    cout<<"\t  -------------------------------------------"<<endl;
 	    p1next= false;
 	    
 	  }
@@ -291,9 +275,7 @@ int main(){
 	    cout<<"Player2(O) Turn"<<endl;
 	    auto p = ai2.play(game);
 	    game.playO(p);
-	    cout<<"\t  -------------------------------------------"<<endl;
 	    game.display();
-	    cout<<"\t  -------------------------------------------"<<endl;
 	    p1next= true;
 	  }
   
