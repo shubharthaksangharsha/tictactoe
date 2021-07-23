@@ -289,7 +289,7 @@ int main(){
       cerr<<"Wrong input"<<endl;
     }
     }
-      else{p
+      else{
 	cerr<<"Wrong input"<<endl;
       }
     return 0;
