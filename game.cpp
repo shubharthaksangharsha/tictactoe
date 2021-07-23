@@ -129,11 +129,8 @@ void Game:: playX(pair<int,int>move){
 //menu function
 void menu(){
   cout<< "Press 0 to play the game!!!\n";
-  cout<< "Press 1 and Hit enter  to display HELP\n";
-  cout<< "Press 2 and input to check the scoreboard\n";
-  cout<< "Press 3 and Hit enter to check who win the game\n";
-  cout<< "Press 4 to draw for mannual\n";
-  cout<< "Press 5 to Exit the Game\n";
+  cout<< "Press 1 to draw for mannual\n";
+  cout<< "Press 2 to Exit the Game\n";
 }
 
 class Player{
@@ -297,4 +294,12 @@ int main(){
       }
     return 0;
   }
+  else if(openmenu == '1'){
+    cout<<"********************WELCOME TO TIC TAC TOE********************************\n\t\tThis is Tic Tac Toe Mannual For you\nThe Developer hadn't finished the Manual yet, wait for some day.\n\t\tManual is coming soon\n";
+  }
+  else{
+    return 0;
+  }
+
+  return 0;
 }
