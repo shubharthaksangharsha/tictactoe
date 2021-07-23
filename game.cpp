@@ -203,12 +203,12 @@ int main(){
       //while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
       while(game.did_win() == '-'){
 	if(p1next){
+	  cout<<"\n------------------------------------\n";
 	  cout<<"Player1(X) Turn"<<endl;
 	  auto p =p1.play(game);
 	  game.playX(p);
-
 	  game.display();
-
+	  cout<<"\n------------------------------------\n";
 	  p1next= false;
 
 	}
