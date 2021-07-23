@@ -223,7 +223,7 @@ int main(){
      }
     else if(choice == 'A' || choice == 'a'){
       char aichoice;
-      cout<<"Will first player(X) be Human(H)/AI(A)?"<<endl;
+      cout<<"Will first player(x) be Human(H)/AI(A)?"<<endl;
       cin>>aichoice;
       if(aichoice == 'A' || aichoice == 'a'){
 	cout<<"Game is created!!!"<<endl;
@@ -233,7 +233,7 @@ int main(){
 	//while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
 	while(game.did_win() == '-'){
 	  if(p1next){
-	    cout<<"Player1(x) Turn"<<endl;
+	    cout<<"Player 1's (x) turn:"<<endl;
 	    auto p =ai1.play(game);
 	    game.playX(p);
 	    game.display();
@@ -242,7 +242,7 @@ int main(){
 	    
 	  }
 	  else{
-	    cout<<"Player2(o) Turn"<<endl;
+	    cout<<"Player 2's (o) turn:"<<endl;
 	    auto p = p2.play(game);
 	    game.playO(p);
 	    game.display();
@@ -263,7 +263,7 @@ int main(){
 	//while(game.did_win() != 'X' &&  game.did_win() != 'D' && game.did_win() != 'O'  ) {
 	while(game.did_win() == '-'){
 	  if(p1next){
-	    cout<<"Player1(X) Turn"<<endl;
+	    cout<<"Player 1's (x) turn:"<<endl;
 	    auto p =p1.play(game);
 	    game.playX(p);
 	    game.display();
@@ -272,7 +272,7 @@ int main(){
 	    
 	  }
 	  else{
-	    cout<<"Player2(O) Turn"<<endl;
+	    cout<<"Player 2's (o) turn:"<<endl;
 	    auto p = ai2.play(game);
 	    game.playO(p);
 	    game.display();
@@ -289,7 +289,7 @@ int main(){
       cerr<<"Wrong input"<<endl;
     }
     }
-      else{
+      else{p
 	cerr<<"Wrong input"<<endl;
       }
     return 0;
