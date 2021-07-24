@@ -113,14 +113,22 @@ char Game:: get(int i, int j){
 
 //playO function
 void Game:: playO(pair<int,int>move){
-
+  if(board[move.first][move.second] == '-'){
   board[move.first][move.second] = 'o';
+  }
+  else{
+    cout<<"Already Filled"<<endl;
+  }
 }
 
 //playX function
 void Game:: playX(pair<int,int>move){
-
+  if(board[move.first][move.second] == '-'){
   board[move.first][move.second] = 'x';
+  }
+  else{
+    cout<<"Already Filled"<<endl;
+  }
 }
 
 
@@ -128,8 +136,8 @@ void Game:: playX(pair<int,int>move){
 
 //menu function
 void menu(){
-  cout<< "Press 0 to play the game!!!\n";
-  cout<< "Press 1 to draw for mannual\n";
+  cout<< "Press 0 to play the Game!!!\n";
+  cout<< "Press 1 to draw the Manual\n";
   cout<< "Press 2 to Exit the Game\n";
 }
 
